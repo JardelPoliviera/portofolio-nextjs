@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Script from 'next/script';
 import { SqueezeCarousel, type SqueezeSlide } from '@/components/ui/squeeze-carousel';
 import { motion, type Variants } from 'framer-motion';
+import { useState } from 'react';
 
 // --- DATA UNTUK FEATURED HIGHLIGHTS ---
 const highlightSlides: SqueezeSlide[] = [
@@ -63,6 +64,7 @@ const staggerContainer: Variants = {
 };
 
 export default function Home() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <>
       {/* --- NAVBAR MOBILE --- */}
@@ -71,20 +73,33 @@ export default function Home() {
           <Link className="navbar-brand fw-bold" href="/">
             <i className="text-success"></i> My Portfolio
           </Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu">
+          <button 
+            className="navbar-toggler" 
+            type="button" 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="mobileMenu">
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item"><Link className="nav-link active" href="/">Home</Link></li>
-              <li className="nav-item"><Link className="nav-link" href="/about">About</Link></li>
-              <li className="nav-item"><Link className="nav-link" href="/portofolio">Portfolio</Link></li>
-              <li className="nav-item"><Link className="nav-link" href="/kontak">Contact</Link></li>
-              <li className="nav-item"><ThemeToggle /></li>
-              <li className="nav-item mt-3 pt-3 border-top border-secondary">
-                <Link className="nav-link text-secondary" href="/arel-secret-creator">
-                  <i className="fas fa-lock"></i> <span className="small">Arel Only</span>
-                </Link>
+          
+          {/* 3. Tambahkan class 'show' secara dinamis jika state isMobileMenuOpen bernilai true */}
+          <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`} id="mobileMenu">
+            {/* Beri sedikit padding bawah (pb-3) dan warna background agar tidak transparan */}
+            <ul className="navbar-nav ms-auto pb-3 pt-2">
+              {/* Tambahkan onClick pada setiap Link agar menu tertutup otomatis saat link ditekan */}
+              <li className="nav-item">
+                <Link className="nav-link" href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" href="/portofolio" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href="/kontak" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
+              </li>
+              <li className="nav-item mt-2">
+                <ThemeToggle />
               </li>
             </ul>
           </div>

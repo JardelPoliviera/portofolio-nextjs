@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Script from 'next/script';
 import { motion, type Variants } from 'framer-motion';
 import { VerticalMarquee } from '@/components/ui/vertical-marquee'; 
+import { useState } from 'react';
 
 // Konfigurasi animasi Framer Motion
 const fadeUpVariant: Variants = {
@@ -25,6 +26,7 @@ const staggerContainer: Variants = {
 };
 
 export default function About() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <>
       {/* --- CSS KHUSUS UNTUK MEMAKSA BOOTSTRAP MENGIKUTI TEMA --- */}
@@ -77,16 +79,32 @@ export default function About() {
           <Link className="navbar-brand fw-bold" href="/">
             <i className="text-success"></i> My Portfolio
           </Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu">
+          <button 
+            className="navbar-toggler" 
+            type="button" 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="mobileMenu">
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item"><Link className="nav-link" href="/">Home</Link></li>
-              <li className="nav-item"><Link className="nav-link active" href="/about">About</Link></li>
-              <li className="nav-item"><Link className="nav-link" href="/portofolio">Portfolio</Link></li>
-              <li className="nav-item"><Link className="nav-link" href="/kontak">Contact</Link></li>
-              <li className="nav-item"><ThemeToggle /></li>
+          <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`} id="mobileMenu">
+            {/* Beri sedikit padding bawah (pb-3) dan warna background agar tidak transparan */}
+            <ul className="navbar-nav ms-auto pb-3 pt-2">
+              {/* Tambahkan onClick pada setiap Link agar menu tertutup otomatis saat link ditekan */}
+              <li className="nav-item">
+                <Link className="nav-link" href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" href="/portofolio" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href="/kontak" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
+              </li>
+              <li className="nav-item mt-2">
+                <ThemeToggle />
+              </li>
             </ul>
           </div>
         </div>
