@@ -1,0 +1,608 @@
+@import "tailwindcss";
+
+:root {
+  --spotify-accent: #1ed760;
+}
+
+/* 1. VARIABEL MODE GELAP (DEFAULT) */
+html,
+html[data-theme="dark"] {
+  --bg-glass: rgba(24, 24, 24, 0.7);
+  --bg-glass-hover: rgba(40, 40, 40, 0.85);
+  --border-glass: rgba(255, 255, 255, 0.05);
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+
+  --grad-bg: #121212;
+  --grad-1: rgba(30, 215, 96, 0.35);
+  --grad-2: #121212;
+  --grad-3: #080808;
+}
+
+/* 2. VARIABEL MODE TERANG */
+html[data-theme="light"] {
+  --bg-glass: rgba(255, 255, 255, 0.6);
+  --bg-glass-hover: rgba(235, 235, 235, 0.9);
+  --border-glass: rgba(0, 0, 0, 0.15);
+  --text-primary: #121212;
+  --text-secondary: #495057;
+
+  --grad-bg: #f8f9fa;
+  --grad-1: rgba(30, 215, 96, 0.25);
+  --grad-2: #f0f2f5;
+  --grad-3: #e9ecef;
+}
+
+/* 3. TERAPKAN KE BACKGROUND BODY */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+
+  background-color: var(--grad-bg) !important;
+  background-image: linear-gradient(135deg, var(--grad-1) 0%, var(--grad-2) 35%, var(--grad-3) 100%) !important;
+
+  background-attachment: fixed !important;
+  background-size: cover !important;
+  color: var(--text-primary) !important;
+
+  overflow-x: hidden;
+  margin: 0;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    background-image 0.4s ease;
+}
+
+/* Perbaiki Sidebar & Navbar agar mengikuti warna tema (bukan lagi hitam pekat) */
+.sidebar,
+.navbar {
+  background: var(--bg-glass) !important;
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  border-right: 1px solid var(--border-glass);
+  border-bottom: 1px solid var(--border-glass);
+  transition: background 0.4s ease;
+}
+
+/* --- SIDEBAR & NAVBAR --- */
+.sidebar,
+.navbar {
+  background: rgba(18, 18, 18, 0.8) !important; /* Header/Sidebar #121212 */
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  border-right: 1px solid var(--border-glass);
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.sidebar {
+  height: 100vh;
+  padding-top: 20px;
+  position: fixed;
+  width: 240px;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* --- TAMPILAN MENU NAVBAR & SIDEBAR (RESPONSIF TEMA) --- */
+.navbar .nav-link,
+.sidebar .nav-link,
+.navbar-brand {
+  color: var(--text-secondary) !important; /* Otomatis abu-abu terang saat gelap, abu-abu gelap yang tegas saat terang */
+  font-weight: 500;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Saat kursor diarahkan (Hover) */
+.navbar .nav-link:hover,
+.sidebar .nav-link:hover {
+  color: var(--text-primary) !important; /* Berubah menjadi teks utama yang sangat kontras */
+  background: var(--bg-glass-hover) !important;
+}
+
+/* Khusus untuk menu yang sedang aktif (Halaman saat ini) */
+.sidebar .nav-link.active,
+.navbar .nav-link.active {
+  color: #000000 !important; /* Tetap hitam di atas tombol hijau Spotify */
+  background: var(--spotify-accent) !important;
+  box-shadow: 0 4px 15px rgba(30, 215, 96, 0.3) !important;
+  font-weight: 600;
+}
+
+/* Memastikan ikon ikut menyesuaikan warna teks */
+.navbar .nav-link i,
+.sidebar .nav-link i,
+.sidebar .nav-link.active i,
+.navbar .nav-link.active i {
+  color: inherit !important;
+}
+
+.brand-section {
+  padding: 0 25px 20px;
+}
+
+/* --- MAIN CONTENT --- */
+.main-content {
+  margin-left: 240px;
+  padding: 20px;
+  min-height: 100vh;
+  background: transparent;
+}
+
+@media (max-width: 767.98px) {
+  .main-content {
+    margin-left: 0 !important;
+    padding-top: 80px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+}
+
+/* --- KARTU PORTOFOLIO --- */
+.spotify-card {
+  background: var(--bg-glass);
+  padding: 15px;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+  height: 100%;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.spotify-card:hover {
+  background: var(--bg-glass-hover); /* Hover #282828 */
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spotify-card img {
+  border-radius: 16px;
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.spotify-card h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--text-primary);
+}
+
+.spotify-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --- MODAL (POPUP LAPRAK) --- */
+.modal-content {
+  background: rgba(24, 24, 24, 0.85);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid var(--border-glass);
+  border-radius: 28px;
+  color: var(--text-primary);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header,
+.modal-footer {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* --- BUTTONS --- */
+.btn-contact,
+.btn-success {
+  background-color: var(--spotify-accent) !important;
+  color: #000000 !important; /* CTA #1ED760 + Teks Hitam */
+  border: none !important;
+  border-radius: 50px;
+  padding: 6px 25px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(30, 215, 96, 0.3);
+}
+
+.btn-contact:hover,
+.btn-success:hover {
+  background-color: #1fdf64 !important;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(30, 215, 96, 0.5);
+}
+
+.text-success {
+  color: var(--spotify-accent) !important;
+  background-color: transparent !important;
+}
+
+.hover-white {
+  transition: color 0.3s ease;
+}
+.hover-white:hover,
+.hover-white:hover i {
+  color: var(--text-primary) !important;
+}
+
+/* Tombol Sekunder (Transparan + Border Putih/Abu) */
+.filter-btn {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--text-secondary) !important;
+  backdrop-filter: blur(10px);
+}
+.filter-btn:hover {
+  background: var(--border-glass) !important;
+}
+
+/* --- ICON FIXES --- */
+i,
+.sidebar .nav-link i,
+.navbar-brand i {
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.sidebar .nav-link i,
+i.fas,
+i.fa-solid,
+i.fa {
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", "FontAwesome" !important;
+  font-weight: 900 !important;
+}
+
+i.fab,
+i.fa-brands {
+  font-family: "Font Awesome 6 Brands", "Font Awesome 5 Brands" !important;
+  font-weight: 400 !important;
+}
+
+.navbar-brand i.text-success,
+i.text-success {
+  color: var(--spotify-accent) !important;
+}
+
+/* --- ACCORDION --- */
+.accordion-item {
+  background: var(--bg-glass) !important;
+  border: 1px solid var(--border-glass) !important;
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  color: var(--text-primary) !important;
+  margin-bottom: 12px;
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+
+.accordion-item:not(:first-of-type) {
+  border-top: 1px solid var(--border-glass) !important;
+}
+
+.accordion-button {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  box-shadow: none !important;
+  font-weight: 500;
+}
+
+.accordion-button:not(.collapsed) {
+  background: var(--bg-glass-hover) !important;
+  color: var(--spotify-accent) !important;
+  box-shadow: none !important;
+}
+
+.accordion-button::after {
+  filter: brightness(0) invert(1);
+}
+
+.accordion-button:not(.collapsed)::after {
+  filter: brightness(0) saturate(100%) invert(58%) sepia(87%) saturate(373%) hue-rotate(94deg) brightness(97%) contrast(93%);
+}
+
+.accordion-body {
+  background: transparent !important;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-glass) !important;
+}
+
+/* --- FORMS & INPUTS --- */
+.form-control,
+.form-select {
+  background: rgba(40, 40, 40, 0.6) !important; /* Input #282828 */
+  border: 1px solid transparent !important; /* Border transparan */
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  color: var(--text-primary) !important;
+  border-radius: 12px;
+  padding: 12px 15px;
+  transition: all 0.3s ease;
+}
+
+.form-control::placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 1;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background: rgba(40, 40, 40, 0.9) !important;
+  border-color: var(--spotify-accent) !important;
+  box-shadow: 0 0 10px rgba(30, 215, 96, 0.2) !important;
+  color: var(--text-primary) !important;
+}
+
+.form-select option {
+  background-color: #181818;
+  color: #ffffff;
+}
+
+.form-check-input {
+  background-color: var(--bg-glass) !important;
+  border: 1px solid var(--border-glass) !important;
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: var(--spotify-accent) !important;
+  border-color: var(--spotify-accent) !important;
+}
+
+.form-check-label {
+  color: var(--text-secondary);
+}
+
+/* --- INSTAGRAM GLASS CARD --- */
+.instagram-glass-card {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  background: rgba(24, 24, 24, 0.5); /* Card #181818 */
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  padding: 24px;
+  text-decoration: none !important;
+  color: var(--text-primary) !important;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition:
+    transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.4s ease;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.instagram-glass-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  background: rgba(40, 40, 40, 0.6); /* Hover #282828 */
+  border-color: rgba(30, 215, 96, 0.4);
+  box-shadow: 0 20px 40px rgba(30, 215, 96, 0.15);
+}
+
+.glass-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(30, 215, 96, 0.1) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.instagram-glass-card:hover .glass-glow {
+  opacity: 1;
+}
+
+.instagram-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.avatar-container {
+  position: relative;
+  width: 68px;
+  height: 68px;
+}
+
+.avatar-gradient-border {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 2.5px;
+  background: linear-gradient(135deg, #1ed760, #1db954, #b3b3b3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.instagram-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #121212;
+}
+
+.instagram-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #121212;
+  border: 1.5px solid var(--border-glass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.instagram-badge i {
+  font-size: 0.75rem;
+  color: #ffffff !important;
+}
+
+.instagram-user-info {
+  display: flex;
+  flex-direction: column;
+}
+.ig-display-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: -0.2px;
+}
+.ig-username {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.ig-bio {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.tool-deck-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.tool-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tool-badge svg {
+  width: 22px;
+  height: 22px;
+  color: rgba(255, 255, 255, 0.6);
+  fill: currentColor;
+  transition: all 0.3s ease;
+}
+.tool-label {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+.tool-item:hover .tool-label {
+  color: var(--text-primary);
+}
+
+.tool-item:hover .tool-badge {
+  border-color: var(--spotify-accent);
+  background: rgba(30, 215, 96, 0.08);
+  box-shadow: 0 0 14px rgba(30, 215, 96, 0.3);
+  transform: translateY(-3px);
+}
+
+.tool-item:hover .tool-badge svg {
+  color: var(--spotify-accent);
+}
+
+.mock-follow-btn {
+  width: 100%;
+  text-align: center;
+  background: var(--spotify-accent);
+  border: 1px solid var(--spotify-accent);
+  padding: 11px 0;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #000000;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(30, 215, 96, 0.2);
+}
+
+.instagram-glass-card:hover .mock-follow-btn {
+  background: #1fdf64;
+  border-color: #1fdf64;
+  box-shadow: 0 6px 20px rgba(30, 215, 96, 0.3);
+}
+
+/* Mencegah background solid menutupi konten saat animasi selesai */
+.accordion-collapse,
+.accordion-collapse.collapse.show,
+.accordion-collapse.collapsing {
+  background: transparent !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Memastikan area isi accordion tetap menggunakan efek glass/transparan */
+.accordion-body {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-top: 1px solid var(--border-glass) !important;
+}
+
+/* Memaksa SEMUA teks di dalam accordion (paragraf, list, dll) berwarna putih bersih */
+.accordion-body * {
+  color: #ffffff !important;
+}
+/* Memaksa seluruh lapisan dalam accordion menjadi transparan dan teksnya putih */
+.accordion-collapse,
+.accordion-body,
+.accordion-item .collapse {
+  background-color: transparent !important;
+  background: none !important;
+}
+
+.accordion-body {
+  color: #ffffff !important;
+}
+
+/* Memastikan konten di dalam body accordion tidak tertutup atau terpotong */
+
+.accordion-collapse,
+.accordion-body,
+.accordion-item .collapse,
+.accordion-collapse.collapsing {
+  background-color: transparent !important;
+  background: none !important;
+}
+
+/* Memastikan teks tetap putih/terang */
+.accordion-body,
+.accordion-body * {
+  color: #ffffff !important;
+}
