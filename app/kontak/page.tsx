@@ -449,7 +449,7 @@ export default function Kontak() {
       <nav className="navbar navbar-dark bg-black fixed-top d-md-none" style={{ zIndex: 1050 }}>
         <div className="container-fluid">
           <Link className="navbar-brand fw-bold" href="/">
-            <i className="text-success"></i> My Portfolio
+            <span className="text-success">My</span> Portfolio
           </Link>
           
           <button 
@@ -460,21 +460,20 @@ export default function Kontak() {
             <span className="navbar-toggler-icon"></span>
           </button>
           
-          {/* Tambahan bg-black di sini agar background menu dropdown benar-benar hitam pekat */}
-          <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''} bg-black`} id="mobileMenu">
-            <ul className="navbar-nav ms-auto pb-4 pt-3 d-flex flex-column text-center gap-3">
+          {/* PERUBAHAN KUNCI: Buang 'collapse' dan 'show', ganti dengan 'd-block' (tampil) atau 'd-none' (hilang) */}
+          <div className={`w-100 mt-3 bg-black ${isMobileMenuOpen ? 'd-block' : 'd-none'}`}>
+            <ul className="navbar-nav text-center pb-4 w-100 d-flex flex-column gap-3">
               <li className="nav-item">
-                {/* Menggunakan style={{ color: 'white' }} untuk memaksa warna putih */}
-                <Link className="nav-link" href="/" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'white', fontSize: '1.2rem' }}>Home</Link>
+                <Link href="/" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>Home</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="/about" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'white', fontSize: '1.2rem' }}>About</Link>
+                <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>About</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="/portofolio" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#198754', fontSize: '1.2rem', fontWeight: 'bold' }}>Portfolio</Link>
+                <Link href="/portofolio" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#198754', textDecoration: 'none', fontSize: '1.2rem', fontWeight: 'bold' }}>Portfolio</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="/kontak" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'white', fontSize: '1.2rem' }}>Contact</Link>
+                <Link href="/kontak" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>Contact</Link>
               </li>
               <li className="nav-item mt-3 d-flex justify-content-center">
                 <ThemeToggle />
