@@ -68,11 +68,12 @@ export default function Home() {
   return (
     <>
       {/* --- NAVBAR MOBILE --- */}
-      <nav className="navbar navbar-dark bg-black fixed-top d-md-none z-50">
+      <nav className="navbar navbar-dark bg-black fixed-top d-md-none" style={{ zIndex: 1050 }}>
         <div className="container-fluid">
           <Link className="navbar-brand fw-bold" href="/">
             <i className="text-success"></i> My Portfolio
           </Link>
+          
           <button 
             className="navbar-toggler" 
             type="button" 
@@ -81,20 +82,21 @@ export default function Home() {
             <span className="navbar-toggler-icon"></span>
           </button>
           
-          {/* 3. Tambahkan class 'show' secara dinamis jika state isMobileMenuOpen bernilai true */}
-          <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`} id="mobileMenu">
-            <ul className="navbar-nav ms-auto pb-4 pt-3 d-flex flex-column text-center gap-2">
+          {/* Tambahan bg-black di sini agar background menu dropdown benar-benar hitam pekat */}
+          <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''} bg-black`} id="mobileMenu">
+            <ul className="navbar-nav ms-auto pb-4 pt-3 d-flex flex-column text-center gap-3">
               <li className="nav-item">
-                <Link className="nav-link text-white fs-5 fw-medium" href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+                {/* Menggunakan style={{ color: 'white' }} untuk memaksa warna putih */}
+                <Link className="nav-link" href="/" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'white', fontSize: '1.2rem' }}>Home</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-white fs-5 fw-medium" href="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+                <Link className="nav-link" href="/about" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'white', fontSize: '1.2rem' }}>About</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-success fs-5 fw-bold" href="/portofolio" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</Link>
+                <Link className="nav-link" href="/portofolio" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#198754', fontSize: '1.2rem', fontWeight: 'bold' }}>Portfolio</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-white fs-5 fw-medium" href="/kontak" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
+                <Link className="nav-link" href="/kontak" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'white', fontSize: '1.2rem' }}>Contact</Link>
               </li>
               <li className="nav-item mt-3 d-flex justify-content-center">
                 <ThemeToggle />
