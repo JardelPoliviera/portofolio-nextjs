@@ -23,24 +23,21 @@ export default function Portfolio() {
             <span className="navbar-toggler-icon"></span>
           </button>
           
-          {/* 3. Tambahkan class 'show' secara dinamis jika state isMobileMenuOpen bernilai true */}
           <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`} id="mobileMenu">
-            {/* Beri sedikit padding bawah (pb-3) dan warna background agar tidak transparan */}
-            <ul className="navbar-nav ms-auto pb-3 pt-2">
-              {/* Tambahkan onClick pada setiap Link agar menu tertutup otomatis saat link ditekan */}
+            <ul className="navbar-nav ms-auto pb-4 pt-3 d-flex flex-column text-center gap-2">
               <li className="nav-item">
-                <Link className="nav-link" href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+                <Link className="nav-link text-white fs-5 fw-medium" href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+                <Link className="nav-link text-white fs-5 fw-medium" href="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" href="/portofolio" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</Link>
+                <Link className="nav-link text-success fs-5 fw-bold" href="/portofolio" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="/kontak" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
+                <Link className="nav-link text-white fs-5 fw-medium" href="/kontak" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
               </li>
-              <li className="nav-item mt-2">
+              <li className="nav-item mt-3 d-flex justify-content-center">
                 <ThemeToggle />
               </li>
             </ul>
