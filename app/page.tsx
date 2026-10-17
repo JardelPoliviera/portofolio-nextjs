@@ -6,6 +6,7 @@ import Script from 'next/script';
 import { SqueezeCarousel, type SqueezeSlide } from '@/components/ui/squeeze-carousel';
 import { motion, type Variants } from 'framer-motion';
 import { useState } from 'react';
+import { TubelightNavbar } from '@/components/ui/tubelight-navbar';
 
 // --- DATA UNTUK FEATURED HIGHLIGHTS ---
 const highlightSlides: SqueezeSlide[] = [
@@ -68,42 +69,7 @@ export default function Home() {
   return (
     <>
       {/* --- NAVBAR MOBILE --- */}
-      <nav className="navbar navbar-dark bg-black fixed-top d-md-none" style={{ zIndex: 1050 }}>
-        <div className="container-fluid">
-          <Link className="navbar-brand fw-bold" href="/">
-            <span className="text-success">My</span> Portfolio
-          </Link>
-          
-          <button 
-            className="navbar-toggler" 
-            type="button" 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          
-          {/* PERUBAHAN KUNCI: Buang 'collapse' dan 'show', ganti dengan 'd-block' (tampil) atau 'd-none' (hilang) */}
-          <div className={`w-100 mt-3 bg-black ${isMobileMenuOpen ? 'd-block' : 'd-none'}`}>
-            <ul className="navbar-nav text-center pb-4 w-100 d-flex flex-column gap-3">
-              <li className="nav-item">
-                <Link href="/" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>Home</Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>About</Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/portofolio" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#198754', textDecoration: 'none', fontSize: '1.2rem', fontWeight: 'bold' }}>Portfolio</Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/kontak" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>Contact</Link>
-              </li>
-              <li className="nav-item mt-3 d-flex justify-content-center">
-                <ThemeToggle />
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <TubelightNavbar />
 
       {/* --- SIDEBAR DESKTOP --- */}
       <nav className="sidebar d-none d-md-flex flex-column z-50">
