@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import ThemeToggle from '@/components/ui/ThemeToggle'; // Sesuaikan path jika perlu
 import Link from 'next/link'; // 1. TAMBAHKAN IMPORT LINK DARI NEXT.JS
 
-export const instant = false;
+export const instant = false; 
 
 export default async function LaprakDetail({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
