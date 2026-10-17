@@ -3,4 +3,4 @@ const nextConfig = {
     ignoreDuringBuilds: true, // Mengabaikan ESLint saat build
   },
 };
-export default nextConfig;
+export default nextConfig; 
