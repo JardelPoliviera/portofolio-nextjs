@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import ThemeToggle from "@/components/ui/ThemeToggle"; // 1. Import tombolnya
+// @ts-ignore Next.js handles global stylesheet imports at build time.
 import "./globals.css";
-import { SpotifyFooter } from '@/components/ui/spotify-footer';
+import { SpotifyFooter } from "@/components/ui/spotify-footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
