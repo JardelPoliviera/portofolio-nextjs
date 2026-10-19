@@ -12,6 +12,11 @@ html[data-theme="dark"] {
   --border-glass: rgba(255, 255, 255, 0.05);
   --text-primary: #ffffff;
   --text-secondary: #b3b3b3;
+  --input-bg: rgba(40, 40, 40, 0.6);
+  --input-focus-bg: rgba(40, 40, 40, 0.9);
+  --form-option-bg: #181818;
+  --form-option-text: #ffffff;
+  --accordion-arrow-filter: brightness(0) invert(1);
 
   --grad-bg: #121212;
   --grad-1: rgba(30, 215, 96, 0.35);
@@ -26,6 +31,11 @@ html[data-theme="light"] {
   --border-glass: rgba(0, 0, 0, 0.15);
   --text-primary: #121212;
   --text-secondary: #495057;
+  --input-bg: rgba(255, 255, 255, 0.75);
+  --input-focus-bg: rgba(255, 255, 255, 0.95);
+  --form-option-bg: #ffffff;
+  --form-option-text: #121212;
+  --accordion-arrow-filter: brightness(0);
 
   --grad-bg: #f8f9fa;
   --grad-1: rgba(30, 215, 96, 0.25);
@@ -35,15 +45,11 @@ html[data-theme="light"] {
 
 /* 3. TERAPKAN KE BACKGROUND BODY */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-
   background-color: var(--grad-bg) !important;
   background-image: linear-gradient(135deg, var(--grad-1) 0%, var(--grad-2) 35%, var(--grad-3) 100%) !important;
-
   background-attachment: fixed !important;
   background-size: cover !important;
   color: var(--text-primary) !important;
-
   overflow-x: hidden;
   margin: 0;
   transition:
@@ -52,7 +58,7 @@ body {
     background-image 0.4s ease;
 }
 
-/* Perbaiki Sidebar & Navbar agar mengikuti warna tema (bukan lagi hitam pekat) */
+/* --- SIDEBAR & NAVBAR --- */
 .sidebar,
 .navbar {
   background: var(--bg-glass) !important;
@@ -61,16 +67,6 @@ body {
   border-right: 1px solid var(--border-glass);
   border-bottom: 1px solid var(--border-glass);
   transition: background 0.4s ease;
-}
-
-/* --- SIDEBAR & NAVBAR --- */
-.sidebar,
-.navbar {
-  background: rgba(18, 18, 18, 0.8) !important; /* Header/Sidebar #121212 */
-  backdrop-filter: blur(30px) saturate(150%);
-  -webkit-backdrop-filter: blur(30px) saturate(150%);
-  border-right: 1px solid var(--border-glass);
-  border-bottom: 1px solid var(--border-glass);
 }
 
 .sidebar {
@@ -189,7 +185,7 @@ body {
 
 /* --- MODAL (POPUP LAPRAK) --- */
 .modal-content {
-  background: rgba(24, 24, 24, 0.85);
+  background: var(--bg-glass);
   backdrop-filter: blur(40px) saturate(200%);
   -webkit-backdrop-filter: blur(40px) saturate(200%);
   border: 1px solid var(--border-glass);
@@ -200,7 +196,7 @@ body {
 
 .modal-header,
 .modal-footer {
-  border-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-glass);
 }
 
 /* --- BUTTONS --- */
@@ -306,8 +302,16 @@ i.text-success {
   box-shadow: none !important;
 }
 
+.custom-accordion .accordion-button:not(.collapsed) {
+  color: var(--text-primary) !important;
+}
+
 .accordion-button::after {
-  filter: brightness(0) invert(1);
+  filter: var(--accordion-arrow-filter);
+}
+
+.custom-accordion .accordion-button::after {
+  filter: grayscale(1) contrast(0.5);
 }
 
 .accordion-button:not(.collapsed)::after {
@@ -320,10 +324,27 @@ i.text-success {
   border-top: 1px solid var(--border-glass) !important;
 }
 
+.accordion-body strong {
+  color: var(--text-primary) !important;
+}
+
+.accordion-body small,
+.accordion-body p,
+.accordion-body li {
+  color: var(--text-secondary) !important;
+}
+
+.badge-outline {
+  background-color: transparent !important;
+  border: 1px solid var(--text-primary) !important;
+  color: var(--text-primary) !important;
+  opacity: 0.8;
+}
+
 /* --- FORMS & INPUTS --- */
 .form-control,
 .form-select {
-  background: rgba(40, 40, 40, 0.6) !important; /* Input #282828 */
+  background: var(--input-bg) !important;
   border: 1px solid transparent !important; /* Border transparan */
   backdrop-filter: blur(25px) saturate(180%);
   -webkit-backdrop-filter: blur(25px) saturate(180%);
@@ -340,15 +361,15 @@ i.text-success {
 
 .form-control:focus,
 .form-select:focus {
-  background: rgba(40, 40, 40, 0.9) !important;
+  background: var(--input-focus-bg) !important;
   border-color: var(--spotify-accent) !important;
   box-shadow: 0 0 10px rgba(30, 215, 96, 0.2) !important;
   color: var(--text-primary) !important;
 }
 
 .form-select option {
-  background-color: #181818;
-  color: #ffffff;
+  background-color: var(--form-option-bg);
+  color: var(--form-option-text);
 }
 
 .form-check-input {
@@ -557,52 +578,4 @@ i.text-success {
   background: #1fdf64;
   border-color: #1fdf64;
   box-shadow: 0 6px 20px rgba(30, 215, 96, 0.3);
-}
-
-/* Mencegah background solid menutupi konten saat animasi selesai */
-.accordion-collapse,
-.accordion-collapse.collapse.show,
-.accordion-collapse.collapsing {
-  background: transparent !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-/* Memastikan area isi accordion tetap menggunakan efek glass/transparan */
-.accordion-body {
-  background: transparent !important;
-  color: #ffffff !important;
-  border-top: 1px solid var(--border-glass) !important;
-}
-
-/* Memaksa SEMUA teks di dalam accordion (paragraf, list, dll) berwarna putih bersih */
-.accordion-body * {
-  color: #ffffff !important;
-}
-/* Memaksa seluruh lapisan dalam accordion menjadi transparan dan teksnya putih */
-.accordion-collapse,
-.accordion-body,
-.accordion-item .collapse {
-  background-color: transparent !important;
-  background: none !important;
-}
-
-.accordion-body {
-  color: #ffffff !important;
-}
-
-/* Memastikan konten di dalam body accordion tidak tertutup atau terpotong */
-
-.accordion-collapse,
-.accordion-body,
-.accordion-item .collapse,
-.accordion-collapse.collapsing {
-  background-color: transparent !important;
-  background: none !important;
-}
-
-/* Memastikan teks tetap putih/terang */
-.accordion-body,
-.accordion-body * {
-  color: #ffffff !important;
 }

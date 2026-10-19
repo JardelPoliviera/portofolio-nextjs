@@ -30,50 +30,6 @@ export default function About() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <>
-      {/* --- CSS KHUSUS UNTUK MEMAKSA BOOTSTRAP MENGIKUTI TEMA --- */}
-      <style>{`
-        .custom-accordion .accordion-item {
-          background-color: var(--bg-glass) !important;
-          border-color: var(--border-glass) !important;
-        }
-        .custom-accordion .accordion-button {
-          color: var(--text-primary) !important;
-          background-color: transparent !important;
-          box-shadow: none !important;
-        }
-        .custom-accordion .accordion-button:not(.collapsed) {
-          color: var(--text-primary) !important;
-          background-color: var(--bg-glass-hover) !important;
-          box-shadow: none !important;
-        }
-        .custom-accordion .accordion-body {
-          background-color: transparent !important;
-        }
-        
-        /* PAKSA WARNA TEKS ISI ACCORDION */
-        .custom-accordion .accordion-body strong {
-          color: var(--text-primary) !important;
-        }
-        .custom-accordion .accordion-body small,
-        .custom-accordion .accordion-body p,
-        .custom-accordion .accordion-body li {
-          color: var(--text-secondary) !important;
-        }
-        
-        /* PAKSA WARNA TAHUN (BADGE) AGAR TERLIHAT JELAS DI MODE TERANG/GELAP */
-        .badge-outline {
-          background-color: transparent !important;
-          border: 1px solid var(--text-primary) !important;
-          color: var(--text-primary) !important;
-          opacity: 0.8;
-        }
-        
-        /* WARNA PANAH ACCORDION */
-        .custom-accordion .accordion-button::after {
-          filter: grayscale(1) contrast(0.5);
-        }
-      `}</style>
-
       {/* --- NAVBAR MOBILE --- */}
       <TubelightNavbar />
 
