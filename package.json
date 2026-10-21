@@ -2,9 +2,9 @@
   "name": "portofolio_2411533012",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
+ "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "echo 'Bypass Build di Hostinger, pakai hasil lokal'",
     "start": "next start",
     "lint": "eslint"
   },
