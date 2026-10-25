@@ -1,7 +1,10 @@
 import { supabase } from '@/lib/supabase';
 import { notFound } from 'next/navigation';
-import ThemeToggle from '@/components/ui/ThemeToggle'; // Sesuaikan path jika perlu
-import Link from 'next/link'; // 1. TAMBAHKAN IMPORT LINK DARI NEXT.JS
+import ThemeToggle from '@/components/ui/ThemeToggle';
+import Link from 'next/link';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
  
 export default async function LaprakDetail({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
@@ -45,7 +48,7 @@ export default async function LaprakDetail({ params }: { params: Promise<{ slug:
           {/* Header Laprak */}
           <div className="mb-12 pb-8 relative flex flex-col items-center">
             
-            {/* 2. TOMBOL KEMBALI KE ARSIP (Kiri Atas) */}
+            {/* Tombol kembali ke portofolio (Kiri Atas) */}
             <div className="absolute top-0 left-0 z-20">
               <Link href="/portofolio" 
                     className="flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md shadow-sm hover:scale-105 hover:-translate-x-1 transition-all text-sm font-semibold"
@@ -60,7 +63,7 @@ export default async function LaprakDetail({ params }: { params: Promise<{ slug:
                <ThemeToggle />
             </div>
 
-            {/* Kotak Judul Kaca (Margin atas ditambah menjadi mt-14 agar tidak bertabrakan dengan tombol di HP) */}
+            {/* Kotak Judul Kaca */}
             <div className="mt-14 p-8 w-full text-center rounded-3xl backdrop-blur-xl shadow-lg transition-colors duration-500"
                  style={{ backgroundColor: 'var(--l-glass)', border: '1px solid var(--l-border)' }}>
               <h1 className="text-3xl md:text-4xl font-extrabold mb-3 drop-shadow-sm">
@@ -74,7 +77,7 @@ export default async function LaprakDetail({ params }: { params: Promise<{ slug:
 
           {/* Susunan Cells */}
           <div className="flex flex-col gap-8">
-            {laprak.content.map((cell: any, idx: number) => {
+            {laprak.content && Array.isArray(laprak.content) && laprak.content.map((cell: any, idx: number) => {
               
               if (cell.type === 'text') {
                 return (

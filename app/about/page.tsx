@@ -2,7 +2,6 @@
 
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import Link from 'next/link';
-import Script from 'next/script';
 import { motion, type Variants } from 'framer-motion';
 import { VerticalMarquee } from '@/components/ui/vertical-marquee'; 
 import { useState } from 'react';
@@ -27,7 +26,12 @@ const staggerContainer: Variants = {
 };
 
 export default function About() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openAccordion, setOpenAccordion] = useState<string | null>("collapseOne");
+
+  const toggleAccordion = (id: string) => {
+    setOpenAccordion(prev => (prev === id ? null : id));
+  };
+
   return (
     <>
       {/* --- NAVBAR MOBILE --- */}
@@ -130,11 +134,15 @@ export default function About() {
             {/* Bagian Pendidikan */}
             <motion.div variants={fadeUpVariant} className="accordion-item mb-3 rounded-xl overflow-hidden">
               <h2 className="accordion-header">
-                <button className="accordion-button border-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                <button 
+                  className={`accordion-button border-0 ${openAccordion !== 'collapseOne' ? 'collapsed' : ''}`} 
+                  type="button" 
+                  onClick={() => toggleAccordion('collapseOne')}
+                >
                   <i className="fas fa-graduation-cap me-3 text-[#1ED760]"></i> Pendidikan (Education)
                 </button>
               </h2>
-              <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionAbout">
+              <div id="collapseOne" className={`accordion-collapse collapse ${openAccordion === 'collapseOne' ? 'show' : ''}`}>
                 <div className="accordion-body">
                   <ul className="list-unstyled mb-0">
                     <li className="mb-3">
@@ -164,11 +172,15 @@ export default function About() {
             {/* Bagian Pengalaman */}
             <motion.div variants={fadeUpVariant} className="accordion-item mb-3 rounded-xl overflow-hidden">
               <h2 className="accordion-header">
-                <button className="accordion-button collapsed border-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                <button 
+                  className={`accordion-button border-0 ${openAccordion !== 'collapseTwo' ? 'collapsed' : ''}`} 
+                  type="button" 
+                  onClick={() => toggleAccordion('collapseTwo')}
+                >
                   <i className="fas fa-briefcase me-3 text-[#1ED760]"></i> Pengalaman (Experience)
                 </button>
               </h2>
-              <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionAbout">
+              <div id="collapseTwo" className={`accordion-collapse collapse ${openAccordion === 'collapseTwo' ? 'show' : ''}`}>
                 <div className="accordion-body d-flex flex-column gap-3">
                   <div>
                     <p className="mb-1"><strong>Create Pixel Art</strong> (2025)</p>
@@ -191,11 +203,15 @@ export default function About() {
             {/* Bagian Keahlian */}
             <motion.div variants={fadeUpVariant} className="accordion-item mb-3 rounded-xl overflow-hidden">
               <h2 className="accordion-header">
-                <button className="accordion-button collapsed border-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                <button 
+                  className={`accordion-button border-0 ${openAccordion !== 'collapseThree' ? 'collapsed' : ''}`} 
+                  type="button" 
+                  onClick={() => toggleAccordion('collapseThree')}
+                >
                   <i className="fas fa-code me-3 text-[#1ED760]"></i> Keahlian (Skills)
                 </button>
               </h2>
-              <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionAbout">
+              <div id="collapseThree" className={`accordion-collapse collapse ${openAccordion === 'collapseThree' ? 'show' : ''}`}>
                 <div className="accordion-body d-flex flex-column gap-3">
                   <div>
                     <p className="mb-1"><strong>Fotografi & Design</strong></p>
@@ -216,11 +232,6 @@ export default function About() {
         <div className="pb-28"></div>
         
       </main>
-
-      {/* Panggil komponen SpotifyFooter di sini */}
-      
-
-      <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" strategy="lazyOnload" />
     </>
   );
 }
