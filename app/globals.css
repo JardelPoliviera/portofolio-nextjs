@@ -341,6 +341,20 @@ i.text-success {
   opacity: 0.8;
 }
 
+/* Pastikan konten accordion tidak tersembunyi oleh Tailwind .collapse */
+.accordion-collapse,
+.accordion-collapse.collapse,
+.accordion-collapse.collapse.show,
+.accordion-collapse.collapsing {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.accordion-body,
+.accordion-body * {
+  visibility: visible !important;
+}
+
 /* --- FORMS & INPUTS --- */
 .form-control,
 .form-select {

@@ -2,7 +2,7 @@
 
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import Link from 'next/link';
-import { motion, type Variants } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { VerticalMarquee } from '@/components/ui/vertical-marquee'; 
 import { useState } from 'react';
 import { TubelightNavbar } from '@/components/ui/tubelight-navbar';
@@ -132,98 +132,149 @@ export default function About() {
           <div className="accordion custom-accordion" id="accordionAbout">
               
             {/* Bagian Pendidikan */}
-            <motion.div variants={fadeUpVariant} className="accordion-item mb-3 rounded-xl overflow-hidden">
-              <h2 className="accordion-header">
+            <motion.div variants={fadeUpVariant} className="accordion-item mb-3 rounded-2xl overflow-hidden border border-[var(--border-glass)]" style={{ backgroundColor: "var(--bg-glass)" }}>
+              <h2 className="accordion-header m-0">
                 <button 
-                  className={`accordion-button border-0 ${openAccordion !== 'collapseOne' ? 'collapsed' : ''}`} 
+                  className={`w-full flex items-center justify-between p-4 text-start font-semibold transition-colors duration-200 ${
+                    openAccordion === 'collapseOne' ? 'bg-[var(--bg-glass-hover)] text-[#1ED760]' : 'text-[var(--text-primary)] hover:bg-[var(--bg-glass-hover)]'
+                  }`}
                   type="button" 
                   onClick={() => toggleAccordion('collapseOne')}
                 >
-                  <i className="fas fa-graduation-cap me-3 text-[#1ED760]"></i> Pendidikan (Education)
+                  <span className="flex items-center gap-3">
+                    <i className="fas fa-graduation-cap text-[#1ED760] text-lg"></i>
+                    <span className="text-base font-semibold">Pendidikan (Education)</span>
+                  </span>
+                  <i className={`fas fa-chevron-down text-sm transition-transform duration-300 ${openAccordion === 'collapseOne' ? 'rotate-180 text-[#1ED760]' : 'opacity-60'}`}></i>
                 </button>
               </h2>
-              <div id="collapseOne" className={`accordion-collapse collapse ${openAccordion === 'collapseOne' ? 'show' : ''}`}>
-                <div className="accordion-body">
-                  <ul className="list-unstyled mb-0">
-                    <li className="mb-3">
-                      <strong>Universitas Andalas</strong> 
-                      <span className="badge bg-[#1ED760] text-black float-end">2024 - Sekarang</span><br />
-                      <small>S1 Informatika</small>
-                    </li>
-                    <li className="mb-3">
-                      <strong>SMA Uswatun Hasanah</strong> 
-                      <span className="badge badge-outline float-end">2021 - 2024</span><br />
-                      <small>Pesantren Terpadu Serambi Mekkah</small>
-                    </li>
-                    <li className="mb-3">
-                      <strong>SMP Uswatun Hasanah</strong> 
-                      <span className="badge badge-outline float-end">2018 - 2021</span><br />
-                      <small>Pesantren Terpadu Serambi Mekkah</small>
-                    </li>
-                    <li>
-                      <strong>SDN 078 Bengkulu Utara</strong> 
-                      <span className="badge badge-outline float-end">2012 - 2018</span><br />
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <AnimatePresence initial={false}>
+                {openAccordion === 'collapseOne' && (
+                  <motion.div
+                    key="content-edu"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="p-5 border-t border-[var(--border-glass)]" style={{ color: "var(--text-secondary)" }}>
+                      <ul className="list-unstyled mb-0">
+                        <li className="mb-3">
+                          <strong className="text-[var(--text-primary)]">Universitas Andalas</strong> 
+                          <span className="badge bg-[#1ED760] text-black float-end font-bold px-2.5 py-1 rounded-full text-xs">2024 - Sekarang</span><br />
+                          <small className="opacity-80">S1 Informatika</small>
+                        </li>
+                        <li className="mb-3">
+                          <strong className="text-[var(--text-primary)]">SMA Uswatun Hasanah</strong> 
+                          <span className="badge border border-[var(--text-primary)]/40 text-[var(--text-primary)] float-end px-2.5 py-1 rounded-full text-xs">2021 - 2024</span><br />
+                          <small className="opacity-80">Pesantren Terpadu Serambi Mekkah</small>
+                        </li>
+                        <li className="mb-3">
+                          <strong className="text-[var(--text-primary)]">SMP Uswatun Hasanah</strong> 
+                          <span className="badge border border-[var(--text-primary)]/40 text-[var(--text-primary)] float-end px-2.5 py-1 rounded-full text-xs">2018 - 2021</span><br />
+                          <small className="opacity-80">Pesantren Terpadu Serambi Mekkah</small>
+                        </li>
+                        <li>
+                          <strong className="text-[var(--text-primary)]">SDN 078 Bengkulu Utara</strong> 
+                          <span className="badge border border-[var(--text-primary)]/40 text-[var(--text-primary)] float-end px-2.5 py-1 rounded-full text-xs">2012 - 2018</span><br />
+                        </li>
+                      </ul>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
 
             {/* Bagian Pengalaman */}
-            <motion.div variants={fadeUpVariant} className="accordion-item mb-3 rounded-xl overflow-hidden">
-              <h2 className="accordion-header">
+            <motion.div variants={fadeUpVariant} className="accordion-item mb-3 rounded-2xl overflow-hidden border border-[var(--border-glass)]" style={{ backgroundColor: "var(--bg-glass)" }}>
+              <h2 className="accordion-header m-0">
                 <button 
-                  className={`accordion-button border-0 ${openAccordion !== 'collapseTwo' ? 'collapsed' : ''}`} 
+                  className={`w-full flex items-center justify-between p-4 text-start font-semibold transition-colors duration-200 ${
+                    openAccordion === 'collapseTwo' ? 'bg-[var(--bg-glass-hover)] text-[#1ED760]' : 'text-[var(--text-primary)] hover:bg-[var(--bg-glass-hover)]'
+                  }`}
                   type="button" 
                   onClick={() => toggleAccordion('collapseTwo')}
                 >
-                  <i className="fas fa-briefcase me-3 text-[#1ED760]"></i> Pengalaman (Experience)
+                  <span className="flex items-center gap-3">
+                    <i className="fas fa-briefcase text-[#1ED760] text-lg"></i>
+                    <span className="text-base font-semibold">Pengalaman (Experience)</span>
+                  </span>
+                  <i className={`fas fa-chevron-down text-sm transition-transform duration-300 ${openAccordion === 'collapseTwo' ? 'rotate-180 text-[#1ED760]' : 'opacity-60'}`}></i>
                 </button>
               </h2>
-              <div id="collapseTwo" className={`accordion-collapse collapse ${openAccordion === 'collapseTwo' ? 'show' : ''}`}>
-                <div className="accordion-body d-flex flex-column gap-3">
-                  <div>
-                    <p className="mb-1"><strong>Create Pixel Art</strong> (2025)</p>
-                    <p className="small mb-0">Membuat web yang mengubah gambar menjadi pixel art.</p>
-                  </div>
-                  <hr className="m-0 border-[var(--border-glass)]" />
-                  <div>
-                    <p className="mb-1"><strong>Progressive web</strong> (2025)</p>
-                    <p className="small mb-0">Membuat web app yang responsif.</p>
-                  </div>
-                  <hr className="m-0 border-[var(--border-glass)]" />
-                  <div>
-                    <p className="mb-1"><strong>RangersPRINT</strong> (2025)</p>
-                    <p className="small mb-0">Project Kewirausahaan.</p>
-                  </div>
-                </div>
-              </div>
+              <AnimatePresence initial={false}>
+                {openAccordion === 'collapseTwo' && (
+                  <motion.div
+                    key="content-exp"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="p-5 border-t border-[var(--border-glass)] flex flex-col gap-3" style={{ color: "var(--text-secondary)" }}>
+                      <div>
+                        <p className="mb-1 text-[var(--text-primary)] font-semibold">Create Pixel Art <span className="text-xs opacity-60 font-normal">(2025)</span></p>
+                        <p className="text-sm opacity-80 mb-0">Membuat web yang mengubah gambar menjadi pixel art.</p>
+                      </div>
+                      <hr className="m-0 border-[var(--border-glass)]" />
+                      <div>
+                        <p className="mb-1 text-[var(--text-primary)] font-semibold">Progressive web <span className="text-xs opacity-60 font-normal">(2025)</span></p>
+                        <p className="text-sm opacity-80 mb-0">Membuat web app yang responsif.</p>
+                      </div>
+                      <hr className="m-0 border-[var(--border-glass)]" />
+                      <div>
+                        <p className="mb-1 text-[var(--text-primary)] font-semibold">RangersPRINT <span className="text-xs opacity-60 font-normal">(2025)</span></p>
+                        <p className="text-sm opacity-80 mb-0">Project Kewirausahaan.</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
 
             {/* Bagian Keahlian */}
-            <motion.div variants={fadeUpVariant} className="accordion-item mb-3 rounded-xl overflow-hidden">
-              <h2 className="accordion-header">
+            <motion.div variants={fadeUpVariant} className="accordion-item mb-3 rounded-2xl overflow-hidden border border-[var(--border-glass)]" style={{ backgroundColor: "var(--bg-glass)" }}>
+              <h2 className="accordion-header m-0">
                 <button 
-                  className={`accordion-button border-0 ${openAccordion !== 'collapseThree' ? 'collapsed' : ''}`} 
+                  className={`w-full flex items-center justify-between p-4 text-start font-semibold transition-colors duration-200 ${
+                    openAccordion === 'collapseThree' ? 'bg-[var(--bg-glass-hover)] text-[#1ED760]' : 'text-[var(--text-primary)] hover:bg-[var(--bg-glass-hover)]'
+                  }`}
                   type="button" 
                   onClick={() => toggleAccordion('collapseThree')}
                 >
-                  <i className="fas fa-code me-3 text-[#1ED760]"></i> Keahlian (Skills)
+                  <span className="flex items-center gap-3">
+                    <i className="fas fa-code text-[#1ED760] text-lg"></i>
+                    <span className="text-base font-semibold">Keahlian (Skills)</span>
+                  </span>
+                  <i className={`fas fa-chevron-down text-sm transition-transform duration-300 ${openAccordion === 'collapseThree' ? 'rotate-180 text-[#1ED760]' : 'opacity-60'}`}></i>
                 </button>
               </h2>
-              <div id="collapseThree" className={`accordion-collapse collapse ${openAccordion === 'collapseThree' ? 'show' : ''}`}>
-                <div className="accordion-body d-flex flex-column gap-3">
-                  <div>
-                    <p className="mb-1"><strong>Fotografi & Design</strong></p>
-                    <small>Lightroom & Figma</small>
-                  </div>
-                  <hr className="m-0 border-[var(--border-glass)]" />
-                  <div>
-                    <p className="mb-1"><strong>Videografi</strong></p>
-                    <small>After Effects & Alight Motion</small>
-                  </div>
-                </div>
-              </div>
+              <AnimatePresence initial={false}>
+                {openAccordion === 'collapseThree' && (
+                  <motion.div
+                    key="content-skills"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="p-5 border-t border-[var(--border-glass)] flex flex-col gap-3" style={{ color: "var(--text-secondary)" }}>
+                      <div>
+                        <p className="mb-1 text-[var(--text-primary)] font-semibold">Fotografi & Design</p>
+                        <small className="opacity-80">Lightroom & Figma</small>
+                      </div>
+                      <hr className="m-0 border-[var(--border-glass)]" />
+                      <div>
+                        <p className="mb-1 text-[var(--text-primary)] font-semibold">Videografi</p>
+                        <small className="opacity-80">After Effects & Alight Motion</small>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
 
           </div>

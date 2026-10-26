@@ -1,10 +1,9 @@
 "use client";
 
-import ThemeToggle from '@/components/ui/ThemeToggle'; // Pastikan path ini sesuai
+import ThemeToggle from '@/components/ui/ThemeToggle';
 import Link from 'next/link';
-import Script from 'next/script';
 import { SqueezeCarousel, type SqueezeSlide } from '@/components/ui/squeeze-carousel';
-import { motion, type Variants } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { useState } from 'react';
 import { TubelightNavbar } from '@/components/ui/tubelight-navbar';
 
@@ -43,7 +42,6 @@ const highlightSlides: SqueezeSlide[] = [
 ];
 
 // --- KONFIGURASI ANIMASI FRAMER MOTION ---
-// Animasi elemen meluncur ke atas (fade up)
 const fadeUpVariant: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { 
@@ -53,7 +51,6 @@ const fadeUpVariant: Variants = {
   }
 };
 
-// Animasi pembungkus untuk memunculkan elemen di dalamnya secara bergantian
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -65,7 +62,8 @@ const staggerContainer: Variants = {
 };
 
 export default function Home() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSkillsOpen, setIsSkillsOpen] = useState(false);
+
   return (
     <>
       {/* --- NAVBAR MOBILE --- */}
@@ -86,10 +84,8 @@ export default function Home() {
            <Link href="/arel-secret-creator" className="text-[var(--text-secondary)] opacity-50 hover:opacity-100 transition" title="Creator Access">
              <i className="fas fa-lock fa-sm"></i>
            </Link>
-        </div>
+          </div>
         </ul>
-
-        
       </nav>
 
       <main className="main-content">
@@ -223,37 +219,52 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Bagian Keahlian */}
-            <motion.div variants={fadeUpVariant} className="accordion-item mb-3 rounded-xl overflow-hidden">
-              <h2 className="accordion-header">
-                <button className="accordion-button collapsed border-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                  <i className="fas fa-code me-3 text-[#1ED760]"></i> Keahlian (Skills)
-                </button>
-              </h2>
-              <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionAbout">
-                <div className="accordion-body d-flex flex-column gap-3">
+        {/* Bagian Keahlian (Accordion Interaktif) */}
+        <motion.div variants={fadeUpVariant} className="accordion-item mb-5 rounded-2xl overflow-hidden border border-[var(--border-glass)]" style={{ backgroundColor: "var(--bg-glass)" }}>
+          <h2 className="accordion-header m-0">
+            <button 
+              className={`w-full flex items-center justify-between p-4 text-start font-semibold transition-colors duration-200 ${
+                isSkillsOpen ? 'bg-[var(--bg-glass-hover)] text-[#1ED760]' : 'text-[var(--text-primary)] hover:bg-[var(--bg-glass-hover)]'
+              }`}
+              type="button" 
+              onClick={() => setIsSkillsOpen(!isSkillsOpen)}
+            >
+              <span className="flex items-center gap-3">
+                <i className="fas fa-code text-[#1ED760] text-lg"></i>
+                <span className="text-base font-semibold">Keahlian Tambahan (Skills Detail)</span>
+              </span>
+              <i className={`fas fa-chevron-down text-sm transition-transform duration-300 ${isSkillsOpen ? 'rotate-180 text-[#1ED760]' : 'opacity-60'}`}></i>
+            </button>
+          </h2>
+          <AnimatePresence initial={false}>
+            {isSkillsOpen && (
+              <motion.div
+                key="home-skills-detail"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
+                <div className="p-5 border-t border-[var(--border-glass)] flex flex-col gap-3" style={{ color: "var(--text-secondary)" }}>
                   <div>
-                    <p className="mb-1"><strong>Fotografi & Design</strong></p>
-                    <small>Lightroom & Figma</small>
+                    <p className="mb-1 text-[var(--text-primary)] font-semibold">Fotografi & Design</p>
+                    <small className="opacity-80">Lightroom & Figma</small>
                   </div>
                   <hr className="m-0 border-[var(--border-glass)]" />
                   <div>
-                    <p className="mb-1"><strong>Videografi</strong></p>
-                    <small>After Effects & Alight Motion</small>
+                    <p className="mb-1 text-[var(--text-primary)] font-semibold">Videografi</p>
+                    <small className="opacity-80">After Effects & Alight Motion</small>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
 
-        
-
-        
         <div className="pb-28"></div>
         
       </main>
-
-
-      <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" strategy="lazyOnload" />
     </>
   );
 }

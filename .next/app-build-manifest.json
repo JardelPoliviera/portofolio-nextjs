@@ -1,3 +1,98 @@
 {
-  "pages": {}
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-7d7ded0aea33c8e3.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-b1e2483a7e02feee.js",
+      "static/chunks/main-app-03a57d93ff92c4af.js",
+      "static/chunks/app/_not-found/page-b0804b07d154848c.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-7d7ded0aea33c8e3.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-b1e2483a7e02feee.js",
+      "static/chunks/main-app-03a57d93ff92c4af.js",
+      "static/css/90a3a12511f2e3d5.css",
+      "static/chunks/app/layout-72019c3307c63af5.js"
+    ],
+    "/about/page": [
+      "static/chunks/webpack-7d7ded0aea33c8e3.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-b1e2483a7e02feee.js",
+      "static/chunks/main-app-03a57d93ff92c4af.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/811-fd563102ef1ce8bd.js",
+      "static/chunks/121-e4e203a16a91a9c2.js",
+      "static/chunks/app/about/page-a14687177ef5da09.js"
+    ],
+    "/arel-secret-creator/page": [
+      "static/chunks/webpack-7d7ded0aea33c8e3.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-b1e2483a7e02feee.js",
+      "static/chunks/main-app-03a57d93ff92c4af.js",
+      "static/chunks/44530001-6a14ce924906b4cd.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/650-1b08e0cdfdaf7376.js",
+      "static/chunks/app/arel-secret-creator/page-57dd512c0d411c5b.js"
+    ],
+    "/kontak/page": [
+      "static/chunks/webpack-7d7ded0aea33c8e3.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-b1e2483a7e02feee.js",
+      "static/chunks/main-app-03a57d93ff92c4af.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/811-fd563102ef1ce8bd.js",
+      "static/chunks/909-e271dda06853dd76.js",
+      "static/chunks/277-cd0c0bea77c39ca2.js",
+      "static/chunks/app/kontak/page-0729df58126d7a4d.js"
+    ],
+    "/laprak-dinamis/page": [
+      "static/chunks/webpack-7d7ded0aea33c8e3.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-b1e2483a7e02feee.js",
+      "static/chunks/main-app-03a57d93ff92c4af.js",
+      "static/chunks/44530001-6a14ce924906b4cd.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/650-1b08e0cdfdaf7376.js",
+      "static/chunks/app/laprak-dinamis/page-189185ccaf77258b.js"
+    ],
+    "/portofolio/page": [
+      "static/chunks/webpack-7d7ded0aea33c8e3.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-b1e2483a7e02feee.js",
+      "static/chunks/main-app-03a57d93ff92c4af.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/811-fd563102ef1ce8bd.js",
+      "static/chunks/app/portofolio/page-e9b94fa492a48b14.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-7d7ded0aea33c8e3.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-b1e2483a7e02feee.js",
+      "static/chunks/main-app-03a57d93ff92c4af.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/811-fd563102ef1ce8bd.js",
+      "static/chunks/909-e271dda06853dd76.js",
+      "static/chunks/121-e4e203a16a91a9c2.js",
+      "static/chunks/app/page-df49e337fac8fcbd.js"
+    ],
+    "/laprak/page": [
+      "static/chunks/webpack-7d7ded0aea33c8e3.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-b1e2483a7e02feee.js",
+      "static/chunks/main-app-03a57d93ff92c4af.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/811-fd563102ef1ce8bd.js",
+      "static/chunks/737-3340bf240c4cc9fe.js",
+      "static/chunks/app/laprak/page-f0e8f87cc80fc808.js"
+    ],
+    "/laprak/[slug]/page": [
+      "static/chunks/webpack-7d7ded0aea33c8e3.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-b1e2483a7e02feee.js",
+      "static/chunks/main-app-03a57d93ff92c4af.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/app/laprak/[slug]/page-a6bea370cad63577.js"
+    ]
+  }
 }
