@@ -1,12 +1,12 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/laprak-dinamis/page": "app/laprak-dinamis/page.js",
+  "/kontak/page": "app/kontak/page.js",
   "/about/page": "app/about/page.js",
   "/arel-secret-creator/page": "app/arel-secret-creator/page.js",
-  "/kontak/page": "app/kontak/page.js",
-  "/laprak-dinamis/page": "app/laprak-dinamis/page.js",
   "/portofolio/page": "app/portofolio/page.js",
-  "/page": "app/page.js",
   "/laprak/page": "app/laprak/page.js",
+  "/page": "app/page.js",
   "/laprak/[slug]/page": "app/laprak/[slug]/page.js"
 }

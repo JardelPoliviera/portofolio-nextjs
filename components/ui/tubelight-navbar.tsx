@@ -1,13 +1,40 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, User, Briefcase, Mail } from "lucide-react";
+import { Home, User, Briefcase, Mail, Moon, Sun } from "lucide-react";
 
 export function TubelightNavbar() {
   const pathname = usePathname();
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    const updateThemeState = () => {
+      const savedTheme = localStorage.getItem("theme");
+      const currentTheme =
+        document.documentElement.getAttribute("data-theme") || savedTheme || "dark";
+      setIsDark(currentTheme === "dark");
+    };
+
+    updateThemeState();
+    window.addEventListener("themechange", updateThemeState);
+    window.addEventListener("storage", updateThemeState);
+
+    return () => {
+      window.removeEventListener("themechange", updateThemeState);
+      window.removeEventListener("storage", updateThemeState);
+    };
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = isDark ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", nextTheme);
+    localStorage.setItem("theme", nextTheme);
+    setIsDark(!isDark);
+    window.dispatchEvent(new Event("themechange"));
+  };
 
   const navItems = [
     { name: "Home", url: "/", icon: Home },
@@ -55,7 +82,33 @@ export function TubelightNavbar() {
             </Link>
           );
         })}
+
+        {/* Pemisah Halus Antara Navigasi & Tombol Tema */}
+        <div className="w-[1px] h-4 bg-[var(--border-glass)] mx-0.5 opacity-60" />
+
+        {/* Tombol Ganti Tema Mobile (Tidak tertutup footer & tidak menghalangi konten) */}
+        <button
+          type="button"
+          onClick={toggleTheme}
+          aria-label="Ganti Tema Tampilan"
+          title={isDark ? "Beralih ke Mode Terang" : "Beralih ke Mode Gelap"}
+          className="relative flex items-center justify-center rounded-full p-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-glass-hover)] transition-all duration-200"
+        >
+          {isDark ? (
+            <Sun
+              size={18}
+              strokeWidth={2.2}
+              className="text-[#FFBD2E] hover:rotate-45 transition-transform duration-300"
+            />
+          ) : (
+            <Moon
+              size={18}
+              strokeWidth={2.2}
+              className="text-[#1ED760] hover:-rotate-12 transition-transform duration-300"
+            />
+          )}
+        </button>
       </nav>
     </div>
   );
-}
+}
